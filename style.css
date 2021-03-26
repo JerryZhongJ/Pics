@@ -1,0 +1,105 @@
+
+:root{
+    --animate-during: 0.6s;             /*动效时间*/
+    --height: 200px;                    /*图片大小*/
+    --selected-height: 210px;           /*悬停时图片大小*/
+    --selected-offset: 5px;             /*悬停时图片向上向左偏移*/
+    --margin: 10px;                     /*图片之间的间距*/
+    --surrounding: 10px;                /*悬停时信息面板视觉上的padding*/
+    --selected-up: 10px;                /*悬停时图片抬升*/
+    /* --selected-push */
+}
+body {
+    background-color: aliceblue;
+}
+main {
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.wrapper{
+    
+    height: var(--height);
+    padding: calc(var(--margin) / 2);
+    z-index: auto;
+    transition: var(--animate-during);
+}
+
+.wrapper:hover{
+    z-index:1;
+    padding: 0px;
+}
+
+.img-box{
+    border-radius: 10px;
+    background-color:thistle;
+    transition: var(--animate-during);
+    
+}
+
+.wrapper:hover .img-box{
+    padding: var(--surrounding);
+    margin-top: calc(var(--margin) / 2 - var(--selected-up) - var(--surrounding));
+    padding: calc(var(--surrounding) + var(--selected-offset));
+    padding-bottom: var(--surrounding);
+}
+
+.tagbar{
+    background-color: hotpink;
+    border-radius: 50px;
+    padding: 0px;
+    height: 0px;
+    margin-top: 0px;
+    opacity: 0;
+    transition: var(--animate-during);
+}
+.wrapper:hover .tagbar{
+    height: 20px;
+    margin-top: 5px;
+    opacity: 1;
+}
+
+img {
+    display: block;
+    height: var(--height);
+    border-radius: 10px;
+    transition: var(--animate-during);
+}
+
+.wrapper:hover img{
+    height: var(--selected-height);
+    margin-top: calc(0px - var(--selected-offset));
+    margin-left: calc(0px - var(--selected-offset));
+    margin-bottom: 5px;
+    box-shadow: calc(2 * var(--selected-offset)) calc(2 * var(--selected-offset)) 10px grey;
+}
+/* #id8{
+    z-index: 8;
+}
+#id7{
+    z-index: 7;
+}
+#id6{
+    z-index: 6;
+}
+#id5{
+    z-index: 5;
+}
+#id4{
+    z-index: 4;
+}
+#id3{
+    z-index: 3;
+}
+#id2{
+    z-index: 2;
+}
+#id1{
+    z-index: 1;
+}
+#id0{
+    z-index: 0;
+} */
