@@ -1,6 +1,6 @@
 
 :root{
-    --animate-during: 0.6s;             /*动效时间*/
+    --animate-during: 3s;             /*动效时间*/
     --height: 200px;                    /*图片大小*/
     --selected-height: 210px;           /*悬停时图片大小*/
     --selected-offset: 5px;             /*悬停时图片向上向左偏移*/
@@ -21,19 +21,21 @@ main {
 }
 
 .wrapper{
-    
+    /* TODO: set fixed width! */
     height: var(--height);
-    padding: calc(var(--margin) / 2);
-    z-index: auto;
-    transition: var(--animate-during);
+    padding: calc(var(--margin) / 2); /* Not needed: change to margin */
+    z-index: 0;
+    transition: padding var(--animate-during), z-index 0s var(--animate-during); /* Not needed: only z-index is needed */
 }
 
 .wrapper:hover{
     z-index:1;
-    padding: 0px;
+    padding: 0px; /* Not needed */
+    transition: padding var(--animate-during); /* Not Needed*/
 }
 
 .img-box{
+    /* TODO: set fixed width! */
     border-radius: 10px;
     background-color:thistle;
     transition: var(--animate-during);
@@ -41,6 +43,7 @@ main {
 }
 
 .wrapper:hover .img-box{
+    
     padding: var(--surrounding);
     margin-top: calc(var(--margin) / 2 - var(--selected-up) - var(--surrounding));
     padding: calc(var(--surrounding) + var(--selected-offset));
@@ -73,33 +76,6 @@ img {
     height: var(--selected-height);
     margin-top: calc(0px - var(--selected-offset));
     margin-left: calc(0px - var(--selected-offset));
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     box-shadow: calc(2 * var(--selected-offset)) calc(2 * var(--selected-offset)) 10px grey;
 }
-/* #id8{
-    z-index: 8;
-}
-#id7{
-    z-index: 7;
-}
-#id6{
-    z-index: 6;
-}
-#id5{
-    z-index: 5;
-}
-#id4{
-    z-index: 4;
-}
-#id3{
-    z-index: 3;
-}
-#id2{
-    z-index: 2;
-}
-#id1{
-    z-index: 1;
-}
-#id0{
-    z-index: 0;
-} */
