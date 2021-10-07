@@ -2,10 +2,10 @@
 :root{
     --animate-during: 0.6s;             /*动效时间*/
     --height: 200px;                    /*图片大小*/
-    --selected-height: 210px;           /*悬停时图片大小*/
+    --selected-expand: 1.05;           /*悬停时图片大小*/
     --selected-offset: 5px;             /*悬停时图片向上向左偏移*/
-    --margin: 10px;                     /*图片之间的间距*/
-    --surrounding: 10px;                /*悬停时信息面板视觉上的padding*/
+    --margin: 7px;                     /*图片之间的间距*/
+    --panel-padding: 10px;                /*悬停时信息面板视觉上的padding*/
     --selected-up: 10px;                /*悬停时图片抬升*/
     /* --selected-push */
 }
@@ -22,21 +22,19 @@ main {
 }
 
 .wrapper{
-    /* TODO: set fixed width! */
+    /* width is set by Javascript */
     height: var(--height);
-    padding: calc(var(--margin) / 2); /* Not needed: change to margin */
+    margin: var(--margin);
     z-index: 0;
-    transition: padding var(--animate-during), z-index var(--animate-during); /* Not needed: only z-index is needed */
+    transition: z-index var(--animate-during); 
 }
 
 .wrapper:hover{
     z-index:1;
-    padding: 0px; /* Not needed */
-    transition: padding var(--animate-during); /* Not Needed*/
 }
 
 .img-panel{
-    /* TODO: set fixed width! */
+    width: 100%;
     border-radius: 10px;
     background-color:thistle;
     transition: var(--animate-during);
@@ -44,11 +42,12 @@ main {
 }
 
 .wrapper:hover .img-panel{
-    
-    padding: var(--surrounding);
-    margin-top: calc(var(--margin) / 2 - var(--selected-up) - var(--surrounding));
-    padding: calc(var(--surrounding) + var(--selected-offset));
-    padding-bottom: var(--surrounding);
+    width:calc(100% * var(--selected-expand));
+    margin-top: calc(0px - var(--selected-up) - var(--panel-padding));
+    margin-left: calc(0px - var(--selected-up) - var(--panel-padding));
+
+    padding: calc(var(--panel-padding) + var(--selected-offset));
+    padding-bottom: var(--panel-padding);
 }
 
 .tagbar{
@@ -66,15 +65,14 @@ main {
     opacity: 1;
 }
 
-img {
+.picture {
+    width: 100%;
     display: block;
-    height: var(--height);
     border-radius: 10px;
     transition: var(--animate-during);
 }
 
-.wrapper:hover img{
-    height: var(--selected-height);
+.wrapper:hover .picture{
     margin-top: calc(0px - var(--selected-offset));
     margin-left: calc(0px - var(--selected-offset));
     margin-bottom: 10px;
