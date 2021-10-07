@@ -1,6 +1,6 @@
 
 :root{
-    --animate-during: 3s;             /*动效时间*/
+    --animate-during: 0.6s;             /*动效时间*/
     --height: 200px;                    /*图片大小*/
     --selected-height: 210px;           /*悬停时图片大小*/
     --selected-offset: 5px;             /*悬停时图片向上向左偏移*/
@@ -18,6 +18,7 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    transition: var(--animate-during);
 }
 
 .wrapper{
@@ -25,7 +26,7 @@ main {
     height: var(--height);
     padding: calc(var(--margin) / 2); /* Not needed: change to margin */
     z-index: 0;
-    transition: padding var(--animate-during), z-index 0s var(--animate-during); /* Not needed: only z-index is needed */
+    transition: padding var(--animate-during), z-index var(--animate-during); /* Not needed: only z-index is needed */
 }
 
 .wrapper:hover{
@@ -34,7 +35,7 @@ main {
     transition: padding var(--animate-during); /* Not Needed*/
 }
 
-.img-box{
+.img-panel{
     /* TODO: set fixed width! */
     border-radius: 10px;
     background-color:thistle;
@@ -42,7 +43,7 @@ main {
     
 }
 
-.wrapper:hover .img-box{
+.wrapper:hover .img-panel{
     
     padding: var(--surrounding);
     margin-top: calc(var(--margin) / 2 - var(--selected-up) - var(--surrounding));
