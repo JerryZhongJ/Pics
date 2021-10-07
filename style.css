@@ -3,10 +3,10 @@
     --animate-during: 0.6s;             /*动效时间*/
     --height: 200px;                    /*图片大小*/
     --selected-expand: 1.05;           /*悬停时图片大小*/
-    --selected-offset: 5px;             /*悬停时图片向上向左偏移*/
+    --selected-shadow: 10px;             /*悬停时图片向上向左偏移*/
     --margin: 7px;                     /*图片之间的间距*/
-    --panel-padding: 10px;                /*悬停时信息面板视觉上的padding*/
-    --selected-up: 10px;                /*悬停时图片抬升*/
+    --panel-padding: 12px;                /*悬停时信息面板视觉上的padding*/
+    --selected-up: 15px;                /*悬停时图片抬升*/
     /* --selected-push */
 }
 body {
@@ -22,7 +22,7 @@ main {
 }
 
 .wrapper{
-    /* width is set by Javascript */
+    width: var(--width);
     height: var(--height);
     margin: var(--margin);
     z-index: 0;
@@ -34,7 +34,7 @@ main {
 }
 
 .img-panel{
-    width: 100%;
+    width: var(--width);
     border-radius: 10px;
     background-color:thistle;
     transition: var(--animate-during);
@@ -42,12 +42,12 @@ main {
 }
 
 .wrapper:hover .img-panel{
-    width:calc(100% * var(--selected-expand));
+    width:calc(var(--width) * var(--selected-expand) + var(--selected-shadow));
     margin-top: calc(0px - var(--selected-up) - var(--panel-padding));
     margin-left: calc(0px - var(--selected-up) - var(--panel-padding));
 
-    padding: calc(var(--panel-padding) + var(--selected-offset));
-    padding-bottom: var(--panel-padding);
+    
+    padding: var(--panel-padding);
 }
 
 .tagbar{
@@ -66,15 +66,39 @@ main {
 }
 
 .picture {
-    width: 100%;
+    width: var(--width);
     display: block;
     border-radius: 10px;
     transition: var(--animate-during);
 }
 
 .wrapper:hover .picture{
-    margin-top: calc(0px - var(--selected-offset));
-    margin-left: calc(0px - var(--selected-offset));
-    margin-bottom: 10px;
-    box-shadow: calc(2 * var(--selected-offset)) calc(2 * var(--selected-offset)) 10px grey;
+    width:calc(var(--width) * var(--selected-expand));
+    margin-bottom: var(--selected-shadow);
+    box-shadow: var(--selected-shadow) var(--selected-shadow) 7px gray;
+}
+
+.info-bar{
+    overflow: hidden;
+    height:0px;
+    transition: var(--animate-during);
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    justify-items: space-between;
+}
+.wrapper:hover .info-bar{
+    /* height should be set by Javascript*/
+    height: 14px;
+}
+.info{
+    display: block;
+    font-size: 12px;
+    color:#494949;
+}
+
+.resolution{
+    position: left;
+}
+.date{
+    position: right;
 }
