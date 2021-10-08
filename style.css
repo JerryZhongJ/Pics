@@ -1,5 +1,6 @@
 
 :root{
+    --animate-delay: 0.1s;
     --animate-during: 0.6s;             /*动效时间*/
     --height: 200px;                    /*图片大小*/
     --selected-expand: 1.05;           /*悬停时图片大小*/
@@ -18,35 +19,31 @@ main {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    transition: var(--animate-during);
 }
 
-.wrapper{
+.img-wrapper{
     width: var(--width);
     height: var(--height);
     margin: var(--margin);
     z-index: 0;
-    transition: z-index var(--animate-during); 
+    transition: z-index 0s var(--animate-during); 
 }
 
-.wrapper:hover{
+.img-wrapper:hover{
     z-index:1;
+    transition: z-index 0s; 
 }
 
 .img-panel{
     width: var(--width);
     border-radius: 10px;
     background-color:thistle;
-    transition: var(--animate-during);
-    
 }
 
-.wrapper:hover .img-panel{
+.img-wrapper:hover .img-panel{
     width:calc(var(--width) * var(--selected-expand) + var(--selected-shadow));
     margin-top: calc(0px - var(--selected-up) - var(--panel-padding));
     margin-left: calc(0px - var(--selected-up) - var(--panel-padding));
-
-    
     padding: var(--panel-padding);
 }
 
@@ -57,9 +54,8 @@ main {
     height: 0px;
     margin-top: 0px;
     opacity: 0;
-    transition: var(--animate-during);
 }
-.wrapper:hover .tagbar{
+.img-wrapper:hover .tagbar{
     height: 20px;
     margin-top: 5px;
     opacity: 1;
@@ -69,36 +65,43 @@ main {
     width: var(--width);
     display: block;
     border-radius: 10px;
-    transition: var(--animate-during);
 }
 
-.wrapper:hover .picture{
+.img-wrapper:hover .picture{
     width:calc(var(--width) * var(--selected-expand));
     margin-bottom: var(--selected-shadow);
     box-shadow: var(--selected-shadow) var(--selected-shadow) 7px gray;
 }
 
-.info-bar{
+.info-wrapper{
     overflow: hidden;
-    height:0px;
-    transition: var(--animate-during);
-    display:grid;
-    grid-template-columns: 1fr 1fr;
-    justify-items: space-between;
+    height: 0px;
 }
-.wrapper:hover .info-bar{
-    /* height should be set by Javascript*/
-    height: 14px;
+.img-wrapper:hover .info-wrapper{
+    height: var(--info-height);
 }
+.info-bar{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
 .info{
-    display: block;
     font-size: 12px;
     color:#494949;
 }
 
-.resolution{
-    position: left;
+/* transition */
+.img-panel, 
+.picture, 
+.info-wrapper, 
+.tagbar{
+    transition: var(--animate-during);
 }
-.date{
-    position: right;
+
+.img-wrapper:hover .img-panel,
+.img-wrapper:hover .picture,
+.img-wrapper:hover .info-wrapper, 
+.img-wrapper:hover .tagbar{
+    transition: var(--animate-during) var(--animate-delay);
 }
