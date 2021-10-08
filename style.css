@@ -26,7 +26,7 @@ main {
     height: var(--height);
     margin: var(--margin);
     z-index: 0;
-    transition: z-index 0s var(--animate-during); 
+    transition: z-index var(--animate-during); 
 }
 
 .img-wrapper:hover{
