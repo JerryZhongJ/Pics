@@ -8,6 +8,7 @@
     --margin: 7px;                     /*图片之间的间距*/
     --panel-padding: 12px;                /*悬停时信息面板视觉上的padding*/
     --selected-up: 15px;                /*悬停时图片抬升*/
+    --fullscreen-popup: 10px;
     /* --selected-push */
 }
 body {
@@ -35,15 +36,18 @@ main {
 }
 
 .img-panel{
+    position: relative;
+    top: 0px;
+    left: 0px;
     width: var(--width);
     border-radius: 10px;
-    background-color:thistle;
+    background-color:rgba(216,191,216,0.85);
 }
 
 .img-wrapper:hover .img-panel{
     width:calc(var(--width) * var(--selected-expand) + var(--selected-shadow));
-    margin-top: calc(0px - var(--selected-up) - var(--panel-padding));
-    margin-left: calc(0px - var(--selected-up) - var(--panel-padding));
+    top: calc(0px - var(--selected-up) - var(--panel-padding));
+    left: calc(0px - var(--selected-up) - var(--panel-padding));
     padding: var(--panel-padding);
 }
 
@@ -55,6 +59,7 @@ main {
     margin-top: 0px;
     opacity: 0;
 }
+
 .img-wrapper:hover .tagbar{
     height: 20px;
     margin-top: 5px;
@@ -62,6 +67,9 @@ main {
 }
 
 .picture {
+    position: relative;
+    top: 0px;
+    left: 0px;
     width: var(--width);
     display: block;
     border-radius: 10px;
@@ -73,6 +81,16 @@ main {
     box-shadow: var(--selected-shadow) var(--selected-shadow) 7px gray;
 }
 
+.img-wrapper:hover .picture:active {
+    --new-shadow: calc(var(--selected-shadow) + var(--fullscreen-popup));
+    left: calc(0px - var(--fullscreen-popup));
+    top: calc(0px - var(--fullscreen-popup));
+    margin-bottom: var(--new-shadow);
+    box-shadow: var(--new-shadow) var(--new-shadow) 7px gray;
+    transition:cubic-bezier(0.215, 0.610, 0.355, 1) var(--animate-during);
+    
+}
+
 .info-wrapper{
     overflow: hidden;
     height: 0px;
@@ -80,6 +98,7 @@ main {
 .img-wrapper:hover .info-wrapper{
     height: var(--info-height);
 }
+
 .info-bar{
     display:flex;
     flex-wrap: wrap;
@@ -90,6 +109,7 @@ main {
     font-size: 12px;
     color:#494949;
 }
+
 
 /* transition */
 .img-panel, 
@@ -105,3 +125,4 @@ main {
 .img-wrapper:hover .tagbar{
     transition: var(--animate-during) var(--animate-delay);
 }
+
