@@ -5,7 +5,7 @@
     --height: 200px;                    /*图片大小*/
     --selected-expand: 1.05;           /*悬停时图片大小*/
     --selected-shadow: 10px;             /*悬停时图片向上向左偏移*/
-    --margin: 7px;                     /*图片之间的间距*/
+    --margin: 5px;                     /*图片之间的间距*/
     --panel-padding: 12px;                /*悬停时信息面板视觉上的padding*/
     --selected-up: 15px;                /*悬停时图片抬升*/
     --fullscreen-popup: 10px;
@@ -13,10 +13,12 @@
     /* --selected-push */
 }
 body {
-    background-color: aliceblue;
+    background-image:url(assets/background.png), linear-gradient(#f5fffa, #f5fffa) ;
+    background-size: 550px;
+    background-attachment: fixed;
 }
 main {
-    width: 90%;
+    width: 95%;
     margin: auto;
     display: flex;
     flex-wrap: wrap;
