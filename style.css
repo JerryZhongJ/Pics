@@ -9,6 +9,7 @@
     --panel-padding: 12px;                /*悬停时信息面板视觉上的padding*/
     --selected-up: 15px;                /*悬停时图片抬升*/
     --fullscreen-popup: 10px;
+    --fullscreen-animate: 400ms;
     /* --selected-push */
 }
 body {
@@ -126,3 +127,38 @@ main {
     transition: var(--animate-during) var(--animate-delay);
 }
 
+
+.fullscreen-bg{
+    z-index: 2;
+    position: fixed;
+    height: 100vh;
+    width: 100vw;
+    left: 0px;
+    top: 0px;
+    background-color: rgba(0,0,0,0); 
+}
+
+.fullscreen-bg[appear="appear"]{
+    background-color: rgba(0,0,0,0.7);
+    backdrop-filter: blur(5px);
+}
+
+.fullscreen-img{
+    position: fixed;
+    max-height: var(--imgHeight);
+    max-width: var(--imgWidth);
+    left: var(--fixed-left);
+    top: var(--fixed-top);
+}
+
+.fullscreen-img[appear="appear"]{
+    max-height: 90vh;
+    max-width: 90vw;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+.fullscreen-bg,
+.fullscreen-img{
+    transition: var(--fullscreen-animate);
+}
