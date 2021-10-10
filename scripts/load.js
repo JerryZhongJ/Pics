@@ -9,7 +9,7 @@ fetch("./metadata.json").then(function (response) {
         let imgWidth = pictures[i].width * imgHeight / pictures[i].height;
         $("main").append('<div class="img-wrapper" style="--width: ' + imgWidth + 'px">\
                             <div class="img-panel">\
-                                <img class="picture" src="pictures/' + pictures[i].name + '" picID=' + i + '>\
+                                <img class="picture" src="pictures/' + pictures[i].name + '" loading="lazy" picID=' + i + '>\
                                 <div class="info-wrapper">\
                                     <div class="info-bar">\
                                         <span class="info">'+ pictures[i].width + 'x' + pictures[i].width + '</span>\

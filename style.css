@@ -74,12 +74,14 @@ main {
     top: 0px;
     left: 0px;
     width: var(--width);
+    height: var(--height);
     display: block;
     border-radius: 10px;
 }
 
 .img-wrapper:hover .picture{
     width:calc(var(--width) * var(--selected-expand));
+    height:calc(var(--height) * var(--selected-expand));
     margin-bottom: var(--selected-shadow);
     box-shadow: var(--selected-shadow) var(--selected-shadow) 7px gray;
 }
